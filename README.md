@@ -166,4 +166,4 @@ ghūl lacks a number of language features that the ASP.NET framework takes for g
 
 ## issues
 
-[View open issues](https://github.com/degory/ghul/issues?q=is%3Aopen+is%3Aissue+label%3Aghul-web-api) or [raise a new one](https://github.com/degory/ghul/issues/new?labels=ghul-web-api).
+[View open issues](https://github.com/ghul-lang/ghul/issues?q=is%3Aopen+is%3Aissue+label%3Aghul-web-api) or [raise a new one](https://github.com/ghul-lang/ghul/issues/new?labels=ghul-web-api).
