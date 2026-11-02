@@ -33,13 +33,13 @@ namespace ProductAPI is
             let use context = PRODUCT_DB_CONTEXT(_options)
             // DbSet<T>.Find takes a primary-key tuple as object[];
             // for a single-key entity that's a one-element box.
-            let key: object[] = [cast object(id)]
+            let key: ARRAY[object] = [cast object(id)]
             return context.products.find(key)
         si
 
         update_product(id: int, product: PRODUCT) -> Tasks.TASK[bool] is
             let use context = PRODUCT_DB_CONTEXT(_options)
-            let key: object[] = [cast object(id)]
+            let key: ARRAY[object] = [cast object(id)]
             let existing = context.products.find(key)
             if !existing? then
                 return false
@@ -52,7 +52,7 @@ namespace ProductAPI is
 
         delete_product(id: int) -> Tasks.TASK[bool] is
             let use context = PRODUCT_DB_CONTEXT(_options)
-            let key: object[] = [cast object(id)]
+            let key: ARRAY[object] = [cast object(id)]
             let existing = context.products.find(key)
             if !existing? then
                 return false
