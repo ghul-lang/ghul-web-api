@@ -8,7 +8,7 @@ namespace Test is
     use System.Text.Encoding
     use System.Threading.Thread
 
-    class FAILURE: System.Exception is
+    class Failure: System.Exception is
         init(message: string) is
             super.init(message)
         si

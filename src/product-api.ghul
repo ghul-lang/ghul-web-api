@@ -37,7 +37,7 @@ namespace ProductAPI is
     use Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.use_sqlite
     use Microsoft.EntityFrameworkCore.DbContextOptionsBuilder
 
-    entry(args: string[]) is
+    entry(args: ARRAY[string]) is
         let builder = WebApplication.create_builder(args)
 
         let db_path mut = System.Environment.get_environment_variable("GHUL_WEBAPI_DB")
@@ -179,7 +179,6 @@ namespace ProductAPI is
         app.run(null)
     si
 
-    @IL.name("Product")
     class PRODUCT is
         @IL.name("Id")
         id: int public
