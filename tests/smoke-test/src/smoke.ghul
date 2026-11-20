@@ -5,10 +5,10 @@ namespace Test is
     use System.Net.Http.StringContent
     use System.Net.Http.HttpResponseMessage
     use System.Net.HttpStatusCode
-    use System.Text.Encoding
-    use System.Threading.Thread
+    use Text.Encoding
+    use Tasks.Thread
 
-    class Failure: System.Exception is
+    class Failure: Ghul.Exception is
         init(message: string) is
             super.init(message)
         si
@@ -64,7 +64,7 @@ namespace Test is
                 try
                     client.get_async("{base_url}/products/0").result
                     ready = true
-                catch ex: System.Exception
+                catch ex: Ghul.Exception
                     Thread.sleep(500)
                     attempts = attempts + 1
                 yrt

@@ -1,9 +1,9 @@
 namespace ProductAPI is
-    use System.Random
+    use Ghul.Random
     use System.DateOnly
-    use System.DateTime
+    use Time.DateTime
     use System.IServiceProvider
-    use System.Uri
+    use IO.Uri
 
     use Microsoft.AspNetCore.Builder
     use Microsoft.AspNetCore.Http
