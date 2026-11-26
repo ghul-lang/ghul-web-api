@@ -17,7 +17,7 @@ namespace ProductAPI is
 
         // Run pragma+CREATE TABLE once at startup. Returns Task so the
         // caller can await before serving requests.
-        ensure_schema() -> Tasks.TASK is
+        ensure_schema() -> Concurrency.Future is
             let connection = SqliteConnection(_connection_string)
             await connection.open_async()
 
@@ -30,7 +30,7 @@ namespace ProductAPI is
             return
         si
 
-        create_product(product: PRODUCT) -> Tasks.TASK[int] is
+        create_product(product: PRODUCT) -> Concurrency.Future[int] is
             let connection = SqliteConnection(_connection_string)
             await connection.open_async()
 
@@ -46,7 +46,7 @@ namespace ProductAPI is
             return Convert.to_int32(scalar)
         si
 
-        get_product(id: int) -> Tasks.TASK[PRODUCT?] is
+        get_product(id: int) -> Concurrency.Future[PRODUCT?] is
             let connection = SqliteConnection(_connection_string)
             await connection.open_async()
 
@@ -72,7 +72,7 @@ namespace ProductAPI is
             return result
         si
 
-        update_product(id: int, product: PRODUCT) -> Tasks.TASK[bool] is
+        update_product(id: int, product: PRODUCT) -> Concurrency.Future[bool] is
             let connection = SqliteConnection(_connection_string)
             await connection.open_async()
 
@@ -90,7 +90,7 @@ namespace ProductAPI is
             return rows > 0
         si
 
-        delete_product(id: int) -> Tasks.TASK[bool] is
+        delete_product(id: int) -> Concurrency.Future[bool] is
             let connection = SqliteConnection(_connection_string)
             await connection.open_async()
 

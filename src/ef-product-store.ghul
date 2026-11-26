@@ -16,20 +16,20 @@ namespace ProductAPI is
             _options = options
         si
 
-        ensure_schema() -> Tasks.TASK is
+        ensure_schema() -> Concurrency.Future is
             let use context = PRODUCT_DB_CONTEXT(_options)
             await context.database.ensure_created_async(System.Threading.CancellationToken.none)
             return
         si
 
-        create_product(product: PRODUCT) -> Tasks.TASK[int] is
+        create_product(product: PRODUCT) -> Concurrency.Future[int] is
             let use context = PRODUCT_DB_CONTEXT(_options)
             context.products.add(product)
             await context.save_changes_async(System.Threading.CancellationToken.none)
             return product.id
         si
 
-        get_product(id: int) -> Tasks.TASK[PRODUCT?] is
+        get_product(id: int) -> Concurrency.Future[PRODUCT?] is
             let use context = PRODUCT_DB_CONTEXT(_options)
             // DbSet<T>.Find takes a primary-key tuple as object[];
             // for a single-key entity that's a one-element box.
@@ -37,7 +37,7 @@ namespace ProductAPI is
             return context.products.find(key)
         si
 
-        update_product(id: int, product: PRODUCT) -> Tasks.TASK[bool] is
+        update_product(id: int, product: PRODUCT) -> Concurrency.Future[bool] is
             let use context = PRODUCT_DB_CONTEXT(_options)
             let key: ARRAY[object] = [cast object(id)]
             let existing = context.products.find(key)
@@ -50,7 +50,7 @@ namespace ProductAPI is
             return rows > 0
         si
 
-        delete_product(id: int) -> Tasks.TASK[bool] is
+        delete_product(id: int) -> Concurrency.Future[bool] is
             let use context = PRODUCT_DB_CONTEXT(_options)
             let key: ARRAY[object] = [cast object(id)]
             let existing = context.products.find(key)
