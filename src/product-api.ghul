@@ -107,7 +107,7 @@ namespace ProductAPI is
                 (
                     @Microsoft.AspNetCore.Mvc.FromServices() store: ProductStore,
                     @Microsoft.AspNetCore.Mvc.FromBody() product: PRODUCT
-                ) -> Tasks.TASK[IResult] is
+                ) -> Concurrency.Future[IResult] is
                     let id = await store.create_product(product)
 
                     product.id = id
@@ -124,7 +124,7 @@ namespace ProductAPI is
                 (
                     @Microsoft.AspNetCore.Mvc.FromServices() store: ProductStore,
                     @Microsoft.AspNetCore.Mvc.FromRoute() index: int
-                ) -> Tasks.TASK[IResult] is
+                ) -> Concurrency.Future[IResult] is
                     let result = await store.get_product(index)
 
                     if result? then
@@ -144,7 +144,7 @@ namespace ProductAPI is
                     @Microsoft.AspNetCore.Mvc.FromServices() store: ProductStore,
                     @Microsoft.AspNetCore.Mvc.FromRoute() index: int,
                     @Microsoft.AspNetCore.Mvc.FromBody() product: PRODUCT
-                ) -> Tasks.TASK[IResult] is
+                ) -> Concurrency.Future[IResult] is
                     let ok = await store.update_product(index, product)
 
                     if ok then
@@ -163,7 +163,7 @@ namespace ProductAPI is
                 (
                     @Microsoft.AspNetCore.Mvc.FromServices() store: ProductStore,
                     @Microsoft.AspNetCore.Mvc.FromRoute() index: int
-                ) -> Tasks.TASK[IResult] is
+                ) -> Concurrency.Future[IResult] is
                     let ok = await store.delete_product(index)
 
                     if ok then

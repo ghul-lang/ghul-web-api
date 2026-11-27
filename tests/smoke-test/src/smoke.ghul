@@ -1,6 +1,5 @@
 namespace Test is
     use Std = IO.Std
-    use Tasks = System.Threading.Tasks
     use System.Net.Http.HttpClient
     use System.Net.Http.StringContent
     use System.Net.Http.HttpResponseMessage
